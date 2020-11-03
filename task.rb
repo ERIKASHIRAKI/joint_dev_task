@@ -28,8 +28,6 @@ def q2
   array2 = ["bird", "bat", "tiger"]
 
   # 以下に回答を記載
-  # 複数のパターンの回答を思い付きました。どれが最適かご教示頂けると幸いです。
-  # 1つ目
   array = array1 + array2
   p array
   
@@ -74,7 +72,8 @@ def q7
   array = ["1", "2", "3", "4", "5"]
 
   # 以下に回答を記載
-  array.map!{|i| i.to_i}
+  # &:を使用した書き方に修正しました
+  array.map!(&:to_i)
 
   # 以下は変更しないで下さい
   p array
@@ -97,7 +96,8 @@ def q9
   names = ["田中", "佐藤", "佐々木", "高橋"]
 
   # 以下に回答を記載
-  names.each.with_index do |name,i|
+  # with_indexの後に(1)を加えました
+  names.each.with_index(1) do |name,i|
     puts "会員No.#{i} #{name}さん"
   end
 
@@ -120,13 +120,27 @@ def q11
   sports = ["サッカー", "バスケ", "野球", ["フットサル", "野球"], "水泳", "ハンドボール", ["卓球", "サッカー", "ボルダリング"]]
 
   # 以下に回答を記載
-
+  # 2つ質問です。
+  # ①以下のコードは1度目に実行した際、flatten!を記述していませんでした。
+  # 既にuniq!を記述していたので、この時点で重複削除された状態で実行されると予想しましたが、結果はできていませんでした。
+  # その後、多次元配列にuniq!は効かないのか？という仮説を立て、uniq!より先に一次元配列に変換するflatten!を記述しました。この仮説は正しいですか？
+  # ②メソッドは何個でも.でつなげて書く事ができるのか実験してみました。一応動くコードにはなりましたが、以下のような書き方だと後々悪影響を及ぼす、読みにくいなど、問題点はありますでしょうか？
+  
+  puts "ユーザーの趣味一覧"
+  sports.flatten!.uniq!.each.with_index(1){|value,i|
+    puts "No#{i} #{value}"
+  }
 end
 
 def q12
   data = { user: { name: "satou", age: 33 } }
 
   # 以下に回答を記載
+  # 複数のパターンの回答を思い付きました。どれが最適かご教示頂けると幸いです。
+  # 1つ目
+  puts data[:user][:name]
+  # 2つ目
+  puts data.dig(:user, :name)
 
 end
 
@@ -135,13 +149,16 @@ def q13
   update_data = { age: 32, address: "沖縄" }
 
   # 以下に回答を記載
-
+  puts user_data.merge(update_data)
 end
 
 def q14
   data = { name: "satou", age: 33, address: "saitama", hobby: "soccer", email: "hoge@fuga.com" }
 
   # 以下に回答を記載
+  key = data.keys
+  p key
+  # 質問です。問題文にある”次の配列から全てのキーを取り出した配列を作成”とは、キーを配列として取得するという認識で大丈夫でしょうか？
 
 end
 
