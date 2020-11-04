@@ -5,15 +5,13 @@ def q1
   names = ["田中", "佐藤", "佐々木", "高橋"]
 
   # 以下に回答を記載
-  # 複数のパターンの回答を思い付きました。どれが最適かご教示頂けると幸いです。
-  # 1つ目
+  # 以下、どちらでも可
   names = ["田中", "佐藤", "佐々木", "高橋"]
 
   names.push "斎藤"
 
   p names
 
-  # 2つ目
   names = ["田中", "佐藤", "佐々木", "高橋"]
 
   names << "斎藤"
@@ -30,6 +28,11 @@ def q2
   # 以下に回答を記載
   array = array1 + array2
   p array
+
+  # これは破壊的メソッド。
+  # .以前の元の配列に変更を加えたい時に使う。
+  # array1.concat array2
+  # p array1
   
 end
 
@@ -167,17 +170,9 @@ def q15
   data2 = { name: "yamada", hobby: "baseball", role: "normal" }
 
   # 以下に回答を記載
-  if data1.has_key?(:age)
-    puts "OK"
-  else
-    puts "NG"
-  end
-
-  if data2.has_key?(:age)
-    puts "OK"
-  else
-    puts "NG"
-  end
+  # 元のコードを三項演算子を用いた形に変更しました。三項演算子の前に繰り返し処理でdata1とdata2のキーを同時に取り出すようなことができたなら、もう少しすっきりした記述になるかと思い調べたのですが、思うようなものが出てきませんでした。何かいい方法はありますか？
+  puts data1.has_key?(:age) ? "OK" : "NG"
+  puts data2.has_key?(:age) ? "OK" : "NG"
 
 end
 
