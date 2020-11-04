@@ -136,11 +136,9 @@ def q12
   data = { user: { name: "satou", age: 33 } }
 
   # 以下に回答を記載
-  # 複数のパターンの回答を思い付きました。どれが最適かご教示頂けると幸いです。
-  # 1つ目
+  # こちらが一般的
   puts data[:user][:name]
-  # 2つ目
-  puts data.dig(:user, :name)
+  # puts data.dig(:user, :name)
 
 end
 
@@ -149,16 +147,18 @@ def q13
   update_data = { age: 32, address: "沖縄" }
 
   # 以下に回答を記載
-  puts user_data.merge(update_data)
+  # 修正いたしました。問題文を読み直したところ、”内容を書き換え出力”とあったので、mergeを元の配列に変更を加える破壊的メソッドにしてみました。そうすると、一応内容が変更された状態で出力されたのですが、これで大丈夫でしょうか？
+  puts user_data.merge!(update_data)
+  p user_data
+
 end
 
 def q14
   data = { name: "satou", age: 33, address: "saitama", hobby: "soccer", email: "hoge@fuga.com" }
 
   # 以下に回答を記載
-  key = data.keys
-  p key
-  # 質問です。問題文にある”次の配列から全てのキーを取り出した配列を作成”とは、キーを配列として取得するという認識で大丈夫でしょうか？
+  # 質問にご回答いただきありがとうございます。アドバイスをいただいた形に修正いたしました。
+  p data.keys
 
 end
 
@@ -167,6 +167,17 @@ def q15
   data2 = { name: "yamada", hobby: "baseball", role: "normal" }
 
   # 以下に回答を記載
+  if data1.has_key?(:age)
+    puts "OK"
+  else
+    puts "NG"
+  end
+
+  if data2.has_key?(:age)
+    puts "OK"
+  else
+    puts "NG"
+  end
 
 end
 
@@ -179,6 +190,9 @@ def q16
   ]
 
   # 以下に回答を記載
+  users.each do |user|
+    puts "私の名前は#{user[:name]}です。年齢は#{user[:age]}歳です。"
+  end
 
 end
 
