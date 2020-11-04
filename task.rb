@@ -170,10 +170,11 @@ def q15
   data2 = { name: "yamada", hobby: "baseball", role: "normal" }
 
   # 以下に回答を記載
-  # 元のコードを三項演算子を用いた形に変更しました。三項演算子の前に繰り返し処理でdata1とdata2のキーを同時に取り出すようなことができたなら、もう少しすっきりした記述になるかと思い調べたのですが、思うようなものが出てきませんでした。何かいい方法はありますか？
-  puts data1.has_key?(:age) ? "OK" : "NG"
-  puts data2.has_key?(:age) ? "OK" : "NG"
-
+  # 条件分岐の前にアドバイスいただいた形の繰り返し文を記述しました。修正前よりすっきりした気がいたします。ありがとうございました！
+  [data1, data2].each do |data|
+    puts data.has_key?(:age) ? "OK" : "NG"
+  end
+  
 end
 
 def q16
